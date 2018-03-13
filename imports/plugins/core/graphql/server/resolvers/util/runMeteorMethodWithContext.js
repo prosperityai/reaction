@@ -1,6 +1,6 @@
-import { Meteor } from "meteor/meteor";
 import { DDP } from "meteor/ddp";
 import { DDPCommon } from "meteor/ddp-common";
+import { Meteor } from "meteor/meteor";
 
 /**
  * Applies args to a Meteor method with a GraphQL context.
@@ -21,5 +21,5 @@ export default function runMeteorMethodWithContext(context, name, args) {
     randomSeed: null
   });
 
-  DDP._CurrentInvocation.withValue(invocation, () => Meteor.apply(name, args));
+  return DDP._CurrentInvocation.withValue(invocation, () => Meteor.apply(name, args));
 }
